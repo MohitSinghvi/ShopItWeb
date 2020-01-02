@@ -1,0 +1,188 @@
+[
+    {
+        "name": "nadar/stemming",
+        "version": "1.0.2",
+        "version_normalized": "1.0.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/nadar/stemming.git",
+            "reference": "5b774d9486fe53d40aabf80c6925c926b40cf323"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/nadar/stemming/zipball/5b774d9486fe53d40aabf80c6925c926b40cf323",
+            "reference": "5b774d9486fe53d40aabf80c6925c926b40cf323",
+            "shasum": ""
+        },
+        "require-dev": {
+            "friendsofphp/php-cs-fixer": "^2.0",
+            "phpunit/phpunit": "^6.0"
+        },
+        "time": "2017-03-26T14:30:22+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Nadar\\Stemming\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Basil Suter",
+                "homepage": "https://github.com/nadar",
+                "role": "Creator"
+            }
+        ],
+        "description": "Stemming by Language",
+        "homepage": "https://github.com/nadar/stemming",
+        "keywords": [
+            "php",
+            "stemmer",
+            "stemming"
+        ]
+    },
+    {
+        "name": "patrickschur/language-detection",
+        "version": "v3.4.0",
+        "version_normalized": "3.4.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/patrickschur/language-detection.git",
+            "reference": "95b55109177d5c4bd6b1bec6e8835cd0df36ef5f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/patrickschur/language-detection/zipball/95b55109177d5c4bd6b1bec6e8835cd0df36ef5f",
+            "reference": "95b55109177d5c4bd6b1bec6e8835cd0df36ef5f",
+            "shasum": ""
+        },
+        "require": {
+            "ext-mbstring": "*",
+            "php": "^7"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^6"
+        },
+        "time": "2018-09-19T21:45:51+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "LanguageDetection\\": "src/LanguageDetection"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Patrick Schur",
+                "email": "patrick_schur@outlook.de"
+            }
+        ],
+        "description": "A language detection library for PHP. Detects the language from a given text string.",
+        "homepage": "https://github.com/patrickschur/language-detection",
+        "keywords": [
+            "detect",
+            "detection",
+            "language"
+        ]
+    },
+    {
+        "name": "patrickschur/stanford-nlp-tagger",
+        "version": "v0.2.0",
+        "version_normalized": "0.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/patrickschur/stanford-nlp-tagger.git",
+            "reference": "5e28cae083aee998719ed49213f91d0f6ff8327b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/patrickschur/stanford-nlp-tagger/zipball/5e28cae083aee998719ed49213f91d0f6ff8327b",
+            "reference": "5e28cae083aee998719ed49213f91d0f6ff8327b",
+            "shasum": ""
+        },
+        "require": {
+            "patrickschur/language-detection": "^3",
+            "php": "^7"
+        },
+        "time": "2017-08-21T16:38:21+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "StanfordTagger\\": "src/StanfordTagger"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Patrick Schur",
+                "email": "patrick_schur@outlook.de"
+            }
+        ],
+        "description": "PHP wrapper for the Stanford Natural Language Processing library. Supports POSTagger and CRFClassifier.",
+        "homepage": "https://github.com/patrickschur/stanford-nlp-tagger",
+        "keywords": [
+            "classifier",
+            "language",
+            "natural-language-processing",
+            "ner",
+            "nlp",
+            "pos",
+            "tagger",
+            "wrapper"
+        ]
+    },
+    {
+        "name": "skyeng/php-lemmatizer",
+        "version": "v1.0.3",
+        "version_normalized": "1.0.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/skyeng/php-lemmatizer.git",
+            "reference": "9f5154a0de3c64e08c1a96be793b4eec236962cb"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/skyeng/php-lemmatizer/zipball/9f5154a0de3c64e08c1a96be793b4eec236962cb",
+            "reference": "9f5154a0de3c64e08c1a96be793b4eec236962cb",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.6"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^5.7"
+        },
+        "time": "2017-06-27T06:51:55+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Skyeng\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "PHP Lemmatizer is a lemmatization library to retrieve a base form from an English inflected word.",
+        "keywords": [
+            "english",
+            "lemmatization",
+            "lemmatizer",
+            "php",
+            "word"
+        ]
+    }
+]

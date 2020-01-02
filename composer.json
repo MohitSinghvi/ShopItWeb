@@ -1,0 +1,7 @@
+{
+    "require": {
+        "nadar/stemming": "^1.0",
+        "skyeng/php-lemmatizer": "^1.0",
+        "patrickschur/stanford-nlp-tagger": "^0.2.0"
+    }
+}
