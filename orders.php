@@ -14,11 +14,42 @@ if(isset($_GET['id'])){
 		$cart_product="select prod_id from usercart where id='$id'";
 		$cart_product=mysqli_query($db,$cart_product);
 		
+		
+		$order_product="insert into allorders (user_id)values('$id')";
+
+		$order_product=mysqli_query($db,$order_product);
+
+
 		while(@$cart_product_row=mysqli_fetch_assoc($cart_product)){
+
+
 			$prod_id=$cart_product_row['prod_id'];
-			$order_product="insert into orders values('$id','$prod_id')";
-			$order_product=mysqli_query($db,$order_product);
+
+
+			
+
+
+			
+
+
+			$order_id_row=mysqli_fetch_assoc(mysqli_query($db,"select max(order_id) from allorders where user_id='$id' "));
+
+			$order_id=$order_id_row['max(order_id)'];
+
+			$order_contents=mysqli_query($db,"insert into order_contents values('$order_id',$prod_id,1)");
+
+
+
+
+
+
+
+
+
+
+
 			$remove_from_cart_query="delete from usercart where id='$id' and prod_id='$prod_id'";
+
 			$remove_from_cart_query_result = mysqli_query ($db,$remove_from_cart_query); 
 			
 			
@@ -49,7 +80,7 @@ if(isset($_GET['id'])){
 	}
 }
 else{
-	header("Location:home.php?order=1");
+	header("Location:myorders.php");
 }
 
 ?>

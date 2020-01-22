@@ -2,6 +2,19 @@
 <head>
 <title>Home</title>
 <link rel="icon" href="myfavicon.png">
+<style type="text/css">
+	
+/*body{
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}*/
+
+</style>
 </head>
 </html>
 <?php
@@ -95,6 +108,9 @@ else{
 			}
 		}
 	}
+
+
+
 	elseif(isset($_GET['search']) and !empty($_GET['search'])){
 		// $search_item=$_GET['search'];
 		// //echo $search_item;
@@ -307,28 +323,8 @@ $sentence=@implode(', ',$search_words);
 	}
 	
 }
-if(isset($_SESSION['userid'])&&!empty($_SESSION['userid'])){
-	$id=$_SESSION['userid'];
-	$userquery="select username from users where id= '$id' ";
-	$userquery=mysqli_query($db,$userquery);
-	$userquery=mysqli_fetch_array($userquery,MYSQLI_ASSOC);
-	$userquery=$userquery['username'];
-	$log="loggedin";
-
-	
-	include'hometest.php';
-}
-else{
-	
-	
-	$log="loggedout";
-	
-	include'hometest.php';
-	
-	
-	
-}
-
+include 'logincheck.inc.php';
+include'hometest.php';
 ?>
 
 <script>
