@@ -20,11 +20,11 @@ $id=@$_SESSION['userid'];
 
 
 if($id!=1){
-	$order_ids="select order_id from allorders where user_id='$id' order by order_id desc ";
+	$order_ids="select order_id,paymentdone from allorders where user_id='$id' order by order_id desc ";
 
 }
 else if($id==1){
-	$order_ids="select order_id from allorders order by order_id desc ";
+	$order_ids="select order_id,paymentdone from allorders order by order_id desc ";
 
 }
 
@@ -56,6 +56,8 @@ while(@$row=mysqli_fetch_assoc($order_ids)){
 
 
 	$order_id=$row["order_id"];
+
+	$paymentdone=$row['paymentdone'];
 
 
 
@@ -143,9 +145,13 @@ while(@$row=mysqli_fetch_assoc($order_ids)){
 
 	echo"<tr style='border: 2px solid black;background-color:black; color:white'>
 		<td>TOTAL:</td>
-		<td colspan='2'>".$prod_price_total."</td>
-	</tr>";
-	echo '</table>
+		<td colspan='2'>".$prod_price_total."";
+
+		if($paymentdone==1){
+			echo" - ✓Paid online";
+		}
+	echo '</td>
+	</tr></table>
 
 
 			

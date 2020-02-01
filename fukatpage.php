@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
   <head>
     <title>Hello world</title>
@@ -13,4 +13,8 @@
 
     <script src="https://cdn.snipcart.com/themes/v3.0.5/default/snipcart.js"></script>
   </body>
-</html>
+</html> -->
+<?php
+
+echo "HI";
+?>

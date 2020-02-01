@@ -305,16 +305,6 @@ $sentence=@implode(', ',$search_words);
 
 
 
-
-
-
-
-
-
-
-
-
-
 	}
 	else{
 		$product_query="select * from allproducts limit 25
