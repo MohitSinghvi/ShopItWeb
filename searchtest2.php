@@ -81,7 +81,7 @@ foreach($search_array as $search_word){
 
 	if (!in_array($search_word, $stop_words_array)) {
 
-			echo "HAHAHAHAH";
+			// echo "HAHAHAHAH";
 			$search_words[] = $lemmatizer->getOnlyLemmas($search_word)[0];
 			// echo"idhar bhi";
 	}

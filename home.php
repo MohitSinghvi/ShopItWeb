@@ -43,7 +43,12 @@ $pos = new \StanfordTagger\POSTagger();
 // var_dump($result);
 
 
-
+if(isset($_GET['orderby'])){
+			$orderby_query=" order by prod_price ".$_GET['orderby'];
+}
+else{
+	$orderby_query="";
+}
 
 $_SESSION['url'] = $_SERVER['REQUEST_URI'];
 $id=@$_SESSION['userid'];
@@ -57,18 +62,32 @@ if(isset($_GET['prod_id'])){
 else{
 	$showing="many";
 	if(isset($_GET['prod_category'])){
+		$gender="";
+		if(isset($_GET['gender'])){
+			$gender="\'".$_GET["gender"]."\'";
+		}
 		$prod_category=$_GET['prod_category'];
-		$product_query="select * from allproducts where prod_category like '%$prod_category%' limit 25";
+
+		$product_query="select * from allproducts where prod_category like '%$prod_category%$gender%'".$orderby_query;
+
+		// echo $product_query;
 		$show="CATEGORY : ".strtoupper($prod_category);
 	}
 	elseif(isset($_GET['prod_brand'])){
 		$prod_brand=$_GET['prod_brand'];
-		$product_query="select * from allproducts where prod_brand='$prod_brand' limit 25";
+		$product_query="select * from allproducts where prod_brand='$prod_brand' ";
+		$gender="";
+		if(isset($_GET['gender'])){
+			$gender=" and prod_category like '%\'".$_GET["gender"]."\'%'";
+		}
+		$product_query=$product_query.$gender.$orderby_query;
+		// echo $product_query;
+
 		$show="BRAND : ".strtoupper($prod_brand);
 	}
 	elseif(isset($_GET['cart']) and isset($_SESSION['userid'])){
 	//	$prod_brand=$_GET['prod_brand'];
-		$product_query="select * from allproducts where prod_id in (select prod_id from usercart where id = '$id') limit 25";
+		$product_query="select * from allproducts where prod_id in (select prod_id from usercart where id = '$id')";
 		// $product_query="select * from allproducts p,order o  where p.prod_id=o.prod_id and o.id='$id' limit 25";
 
 
@@ -80,7 +99,7 @@ else{
 	elseif(isset($_GET['order'])){
 		if($id!=1){
 
-			$product_query="select * from allproducts  where prod_id in (select prod_id from orders where id=$id) limit 25";
+			$product_query="select * from allproducts  where prod_id in (select prod_id from orders where id=$id)";
 			
 
 
@@ -185,6 +204,11 @@ else{
 $gender_query="";
 $color_query="";
 $size_of_search_query=sizeof($search_array);
+if(isset($_GET["gender"])){
+	if(@array_key_exists($_GET["gender"],$gender)){
+		$gender_query=$gender[$_GET["gender"]];
+	}
+}
 for($i =0; $i<$size_of_search_query;$i++){
 	// echo $search_array[$i]." </br>";
 	// echo sizeof($search_array);
@@ -266,7 +290,7 @@ for($i =0; $i<$size_of_search_query;$i++){
 		
 
 
-	}
+}
 
 
 foreach($search_array as $search_word){
@@ -298,7 +322,7 @@ $sentence=@implode(', ',$search_words);
 
      WHERE MATCH (prod_name,prod_brand,prod_description) 
      AGAINST ('$sentence' IN NATURAL LANGUAGE MODE) "
-     .$comparator.$price." ".$gender_query." ".$color_query." limit 25";
+     .$comparator.$price." ".$gender_query." ".$color_query.$orderby_query;
 
 // echo $product_query;     
 
@@ -311,7 +335,7 @@ $sentence=@implode(', ',$search_words);
 		";
 		$show="";
 	}
-	
+// echo $product_query;  	
 }
 include 'logincheck.inc.php';
 include'hometest.php';

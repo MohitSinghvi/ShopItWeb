@@ -98,11 +98,7 @@ while(@$row=mysqli_fetch_assoc($order_ids)){
 		echo
 			" <br>ORDERED BY:". $orderer_name." Address: ".$orderer_address
 		;
-
 	}
-
-
-
 
 	echo"<table style='width:100%;border: 1px solid black'>
 
@@ -112,26 +108,82 @@ while(@$row=mysqli_fetch_assoc($order_ids)){
 
 		";
 
-
-
-
-
-
-
 	while (@$ordered_products=mysqli_fetch_assoc($order_query)){
 
 		$prod_id=$ordered_products['prod_id'];
-		// echo"HIHIHIHI";
 		$prod_image=$ordered_products['prod_image'];
+
+		
+		echo "<tr>
+		<td> <img src='$prod_image' style='height:100px;width:100p;'> ";
+// echo $prod_id;
+		$rating_query="select rating from ratings where user_id=$id and prod_id=$prod_id";
+		$rating_result=mysqli_query($db,$rating_query);
+		if(mysqli_num_rows($rating_result)!=0){
+			
+			$rating_val=mysqli_fetch_assoc($rating_result)['rating'];
+			
+// 			echo $rating_val;
+
+
+
+			echo "
+
+			<div id='YEHWALA' >
+
+				
+
+				<img src='star_empty.png' id='".$prod_id."star1' onclick='rate(this.id,".$prod_id.")' class='star_empty'>
+				<img src='star_empty.png' id='".$prod_id."star2' onclick='rate(this.id,".$prod_id.")' class='star_empty'>
+				<img src='star_empty.png' id='".$prod_id."star3' onclick='rate(this.id,".$prod_id.")' class='star_empty'>
+				<img src='star_empty.png' id='".$prod_id."star4' onclick='rate(this.id,".$prod_id.")' class='star_empty'>
+				<img src='star_empty.png' id='".$prod_id."star5' onclick='rate(this.id,".$prod_id.")' class='star_empty'  >
+
+				<img src onerror=rate("."'".$prod_id."star".$rating_val."'".",".$prod_id.")>
+
+				
+
+				<button onclick='show(".$prod_id.")'' > Submit Rating </button>
+				<p id='demo1' ></p>
+			</div>
+			
+			";
+		}
+		else{
+			echo "
+
+		<div>
+<img src='star_empty.png' id='".$prod_id."star1' onclick='rate(this.id,".$prod_id.")' class='star_empty'>
+<img src='star_empty.png' id='".$prod_id."star2' onclick='rate(this.id,".$prod_id.")' class='star_empty'>
+<img src='star_empty.png' id='".$prod_id."star3' onclick='rate(this.id,".$prod_id.")' class='star_empty'>
+<img src='star_empty.png' id='".$prod_id."star4' onclick='rate(this.id,".$prod_id.")' class='star_empty'>
+<img src='star_empty.png' id='".$prod_id."star5' onclick='rate(this.id,".$prod_id.")' class='star_empty'>
+
+<button onclick='show(".$prod_id.")''> Submit Rating </button>
+<p id='demo1'></p>
+</div>";
+		}
+
+
+// 		echo"<p ></p>";
+
+		// echo"HIHIHIHI";
+		
 		
 		// echo $ordered_products['prod_image'];
 
-		echo "<tr>
-		<td> <img src='$prod_image' style='height:100px;width:100p;float:left;'> </td><td><a href='http://localhost/Shopitv1/home.php?prod_id= $prod_id  "; 
+		
+
+
+
+
+		echo"
+
+		</td><td><a href='http://localhost/Shopitv1/home.php?prod_id= $prod_id  "; 
 
 
 		echo"   ";
-		echo"   '>".$ordered_products["prod_name"]."</a></td><td>";
+		echo"   '> ".$ordered_products["prod_name"]."</a></td><td>";
 		echo $ordered_products["prod_price"]."</td></tr>";
 
 		$prod_price_total+=$ordered_products["prod_price"];
@@ -177,5 +229,79 @@ while(@$row=mysqli_fetch_assoc($order_ids)){
 </div>
 <div class=right_part>
 	</div>
+	
 </div>
+
+
+
+
+<script>
+var rval=1;
+function rate(id,prod_id){
+	var curr_src=document.getElementById(id).getAttribute('src');
+	//document.getElementById('demo1').innerHTML=rval;*/
+	// if(curr_src==='star_yellow.png'){
+	// 	document.getElementById(id).src='star_empty.png';
+	// }
+	// else if(curr_src==='star_empty.png'){
+	// 	document.getElementById(id).src='star_yellow.png';
+	// }
+	if(id==(prod_id+'star5')){
+		rval=5;
+		document.getElementById(prod_id+'star1').src='star_yellow.png';
+		document.getElementById(prod_id+'star2').src='star_yellow.png';
+		document.getElementById(prod_id+'star3').src='star_yellow.png';
+		document.getElementById(prod_id+'star4').src='star_yellow.png';
+		document.getElementById(prod_id+'star5').src='star_yellow.png';
+	}
+	if(id==prod_id+'star4'){
+		rval=4;
+		document.getElementById(prod_id+'star1').src='star_yellow.png';
+		document.getElementById(prod_id+'star2').src='star_yellow.png';
+		document.getElementById(prod_id+'star3').src='star_yellow.png';
+		document.getElementById(prod_id+'star4').src='star_yellow.png';
+		document.getElementById(prod_id+'star5').src='star_empty.png';
+	}
+	if(id==prod_id+'star3'){
+		rval=3;
+		document.getElementById(prod_id+'star1').src='star_yellow.png';
+		document.getElementById(prod_id+'star2').src='star_yellow.png';
+		document.getElementById(prod_id+'star3').src='star_yellow.png';
+		document.getElementById(prod_id+'star4').src='star_empty.png';
+		document.getElementById(prod_id+'star5').src='star_empty.png';
+	}
+	if(id==prod_id+'star2'){
+		rval=2;
+		document.getElementById(prod_id+'star1').src='star_yellow.png';
+		document.getElementById(prod_id+'star2').src='star_yellow.png';
+		document.getElementById(prod_id+'star3').src='star_empty.png';
+		document.getElementById(prod_id+'star4').src='star_empty.png';
+		document.getElementById(prod_id+'star5').src='star_empty.png';
+	}
+	if(id==prod_id+'star1'){
+		rval=1;
+		document.getElementById(prod_id+'star1').src='star_yellow.png';
+		document.getElementById(prod_id+'star2').src='star_empty.png';
+		document.getElementById(prod_id+'star3').src='star_empty.png';
+		document.getElementById(prod_id+'star4').src='star_empty.png';
+		document.getElementById(prod_id+'star5').src='star_empty.png';
+	}
+
+
+	
+}
+function show(prod_id){
+	// document.getElementById('demo1').innerHTML=rval;
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+	  		document.getElementById('demo1').innerHTML =
+	  		this.responseText;
+		}
+  	};
+ 	xhttp.open('POST', 'rating.php', true);
+ 	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+ 	xhttp.send('prod_id='+prod_id+'&rating='+rval);
+}
+</script>
 </html>

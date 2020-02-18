@@ -8,9 +8,7 @@ echo'
 <head>
 <link rel="stylesheet" href="homepage.css" type="text/css">
 <link rel="icon" href="myfavicon.png">
-<link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.0.5/default/snipcart.css" />
-<div hidden id="snipcart" data-api-key="<your_public_api_key>"></div>
-<script src="https://cdn.snipcart.com/themes/v3.0.5/default/snipcart.js"></script>
+
 <style type="text/css">
   
 body{

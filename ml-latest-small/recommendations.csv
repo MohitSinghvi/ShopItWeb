@@ -1,0 +1,11 @@
+,title,Correlation,Total Ratings,movieId,genres
+0,Toy Story (1995),1.0,215,1,Adventure|Animation|Children|Comedy|Fantasy
+1,"Incredibles, The (2004)",0.6433014469670848,125,8961,Action|Adventure|Animation|Children|Comedy
+2,Finding Nemo (2003),0.6187009323878006,141,6377,Adventure|Animation|Children|Comedy
+3,Aladdin (1992),0.6118923229255577,183,588,Adventure|Animation|Children|Comedy|Musical
+4,"Monsters, Inc. (2001)",0.4902312226321975,132,4886,Adventure|Animation|Children|Comedy|Fantasy
+5,Mrs. Doubtfire (1993),0.4462608266903526,144,500,Comedy|Drama
+6,"Amelie (Fabuleux destin d'Amélie Poulain, Le) (2001)",0.4382365323203715,120,4973,Comedy|Romance
+7,American Pie (1999),0.4201172721000712,103,2706,Comedy|Romance
+8,Die Hard: With a Vengeance (1995),0.41093895241876155,144,165,Action|Crime|Thriller
+9,E.T. the Extra-Terrestrial (1982),0.4092157265940128,122,1097,Children|Drama|Sci-Fi
