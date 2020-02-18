@@ -1,3 +1,3 @@
 # ShopItWeb
 
-this is readme
+E-commerce Shopping Website with Semantic search
