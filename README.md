@@ -3,7 +3,7 @@
 E-commerce Shopping Website with Semantic search
 
 Home Page:
-<img src="https://github.com/MohitSinghvi/ShopItWeb/blob/master/Screenshots/home.png?raw=true" style="height:50px;width:50px">
+<img src="https://github.com/MohitSinghvi/ShopItWeb/blob/master/Screenshots/home.png?raw=true" >
 </br>
 </br>
 
