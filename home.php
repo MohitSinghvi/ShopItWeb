@@ -1,3 +1,8 @@
+<?php
+require 'connect.inc.php';
+include 'core.inc.php';
+?>
+
 <html>
 <head>
 <title>Home</title>
@@ -18,8 +23,7 @@
 </head>
 </html>
 <?php
-require 'connect.inc.php';
-include 'core.inc.php';
+
 
 
 use Skyeng\Lemmatizer;
@@ -49,6 +53,13 @@ if(isset($_GET['orderby'])){
 else{
 	$orderby_query="";
 }
+if(isset($_GET['color'])){
+	$color="'%".$_GET['color']."%'";
+	$color_query=" and prod_name like $color";
+}
+else{
+	$color_query="";
+}
 
 $_SESSION['url'] = $_SERVER['REQUEST_URI'];
 $id=@$_SESSION['userid'];
@@ -64,11 +75,13 @@ else{
 	if(isset($_GET['prod_category'])){
 		$gender="";
 		if(isset($_GET['gender'])){
-			$gender="\'".$_GET["gender"]."\'";
+			$gender="\'".$_GET["gender"]."\'"."%";
 		}
 		$prod_category=$_GET['prod_category'];
 
-		$product_query="select * from allproducts where prod_category like '%$prod_category%$gender%'".$orderby_query;
+
+
+		$product_query="select * from allproducts where prod_category like '%$prod_category%$gender'".$color_query.$orderby_query;
 
 		// echo $product_query;
 		$show="CATEGORY : ".strtoupper($prod_category);
@@ -80,7 +93,8 @@ else{
 		if(isset($_GET['gender'])){
 			$gender=" and prod_category like '%\'".$_GET["gender"]."\'%'";
 		}
-		$product_query=$product_query.$gender.$orderby_query;
+
+		$product_query=$product_query.$gender.$color_query.$orderby_query;
 		// echo $product_query;
 
 		$show="BRAND : ".strtoupper($prod_brand);
@@ -126,6 +140,8 @@ else{
 				$show="You don't have any orders.";
 			}
 		}
+
+
 	}
 
 
@@ -179,7 +195,7 @@ else{
 
 		$gender=array("men"=>"and prod_category like '%\'men\'%'","man"=>"and prod_category like '%\'men\'%'","boy"=>"and prod_category like '%\'men\'%'" ,"male"=>"and prod_category like '%\'men\'%'","boys"=>"and prod_category like '%\'men\'%'" ,"women"=>"and prod_category like '%\'women\'%'" ,"woman"=>"and prod_category like '%women%'" ,"girl"=>"and prod_category like '%women%'" ,"girls"=>"and prod_category like '%women%'","female"=>"and prod_category like '%women%'","unisex"=>"and prod_category like '%unisex%'"  );
 
-		$colors=array("blue"=>"and prod_name like '% blue%'","black"=>"and prod_name like '% black%'","brown"=>"and prod_name like '% brown%'","red"=>"and prod_name like '% red%'","white"=>"and prod_name like '% white%'","green"=>"and prod_name like '% green%'","yellow"=>"and prod_name like '% yellow%'","pink"=>"and prod_name like '% pink%'","purple"=>"and prod_name like '% purple%'","violet"=>"and prod_name like '% violet%'","orange"=>"and prod_name like '% orange%'","golden"=>"and prod_name like '% gold%'","silver"=>"and prod_name like '% silver%'");
+		$colors=array("blue"=>"and prod_name like '% blue%'","black"=>"and prod_name like '% black%'","brown"=>"and prod_name like '% brown%'","red"=>"and prod_name like '% red%'","white"=>"and prod_name like '% white%'","green"=>"and prod_name like '% green%'","yellow"=>"and prod_name like '% yellow%'","pink"=>"and prod_name like '% pink%'","purple"=>"and prod_name like '% purple%'","violet"=>"and prod_name like '% violet%'","orange"=>"and prod_name like '% orange%'","golden"=>"and prod_name like '% gold%'","gold"=>"and prod_name like '% gold%'","silver"=>"and prod_name like '% silver%'");
 
 
 
@@ -202,11 +218,17 @@ else{
 // }
 
 $gender_query="";
+
 $color_query="";
 $size_of_search_query=sizeof($search_array);
 if(isset($_GET["gender"])){
 	if(@array_key_exists($_GET["gender"],$gender)){
 		$gender_query=$gender[$_GET["gender"]];
+	}
+}
+if(isset($_GET["color"])){
+	if(@array_key_exists($_GET["color"],$colors)){
+		$color_query=$colors[$_GET["color"]];
 	}
 }
 for($i =0; $i<$size_of_search_query;$i++){

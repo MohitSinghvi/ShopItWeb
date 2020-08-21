@@ -27,16 +27,17 @@ body{
 </head>
 <div class="fullPage">
 	
+	
 
-	<div class="leftcolumn" style="width:20%;float:left;">
+	<div class="leftcolumn" style="width:20%;height: 20px;">
 		<p>
 		 </p>
 	</div>
 	<div class="rightcolumn" align="center" style="width:60%; margin: 5px;padding:5px;">
 		
-		<p align="center">
+		
 			<h1 align="center">TOP BRANDS</h1>
-		</p>
+		
 	</div>
 
 
@@ -170,10 +171,18 @@ body{
 
 
 	</div>
+	<div style="width:20%;height:1000px; margin: 5px;padding:5px;">
+	</div>
 	
-
+	
 
 	</div>
 		
 
 </div>
+
+<?php
+	if($log=="loggedin"){
+		include 'ShowRecommendation.php'; 
+	}
+	?>

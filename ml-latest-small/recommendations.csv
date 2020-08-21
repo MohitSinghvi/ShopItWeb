@@ -1,11 +1,11 @@
-,title,Correlation,Total Ratings,movieId,genres
-0,Toy Story (1995),1.0,215,1,Adventure|Animation|Children|Comedy|Fantasy
-1,"Incredibles, The (2004)",0.6433014469670848,125,8961,Action|Adventure|Animation|Children|Comedy
-2,Finding Nemo (2003),0.6187009323878006,141,6377,Adventure|Animation|Children|Comedy
-3,Aladdin (1992),0.6118923229255577,183,588,Adventure|Animation|Children|Comedy|Musical
-4,"Monsters, Inc. (2001)",0.4902312226321975,132,4886,Adventure|Animation|Children|Comedy|Fantasy
-5,Mrs. Doubtfire (1993),0.4462608266903526,144,500,Comedy|Drama
-6,"Amelie (Fabuleux destin d'Amélie Poulain, Le) (2001)",0.4382365323203715,120,4973,Comedy|Romance
-7,American Pie (1999),0.4201172721000712,103,2706,Comedy|Romance
-8,Die Hard: With a Vengeance (1995),0.41093895241876155,144,165,Action|Crime|Thriller
-9,E.T. the Extra-Terrestrial (1982),0.4092157265940128,122,1097,Children|Drama|Sci-Fi
+,movieId,Correlation,Total Ratings,title,genres
+0,79132,0.7539124891735131,143,Inception (2010),Action|Crime|Drama|Mystery|Sci-Fi|Thriller|IMAX
+1,4963,0.6091556100623207,119,Ocean's Eleven (2001),Crime|Thriller
+2,357,0.5204877203345076,103,Four Weddings and a Funeral (1994),Comedy|Romance
+3,1089,0.503737121137349,131,Reservoir Dogs (1992),Crime|Mystery|Thriller
+4,608,0.5032951618646722,181,Fargo (1996),Comedy|Crime|Drama|Thriller
+5,4226,0.4882497199782598,159,Memento (2000),Mystery|Thriller
+6,318,0.45449030518150796,317,"Shawshank Redemption, The (1994)",Crime|Drama
+7,1208,0.4505198716306522,107,Apocalypse Now (1979),Action|Drama|War
+8,2959,0.44475722390199907,218,Fight Club (1999),Action|Crime|Drama|Thriller
+9,4995,0.4406001363156057,123,"Beautiful Mind, A (2001)",Drama|Romance

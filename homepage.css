@@ -67,14 +67,14 @@ body {
     background-color:white;
     padding: 20px;
     margin: 10px;
-	float:left;
-	width:250px;
+    float:left;
+    width:250px;
 
 
 } 
 .row{
-	width:100%;
-	
+    width:100%;
+    
 }
 
 .row:after {
@@ -106,24 +106,24 @@ body {
         width: 100%;
     }
     
-	.dropdown{
-		 float: none;
+    .dropdown{
+         float: none;
         width: 100%;
-	}
-	.dropbtn{
-		float: none;
+    }
+    .dropbtn{
+        float: none;
         width: 100%;
-	}
-	.dropdown-content a{
-		float: none;
+    }
+    .dropdown-content a{
+        float: none;
         width: 100%;
-	}
-	.card{
-		float:left;
+    }
+    .card{
+        float:left;
         width: 40%;
-	}
+    }
     
-	
+    
 }
 
 
@@ -131,7 +131,7 @@ body {
 
 
 .prod_image{
-	
+    
 }
 
 .button {
@@ -148,7 +148,7 @@ body {
     
     display: block;
     text-decoration: none;
-	color=black;
+    color=black;
 }
 
 

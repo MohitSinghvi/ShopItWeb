@@ -69,7 +69,7 @@ if(isset($_GET['id'])){
 
 		}
 
-		$api = new Instamojo\Instamojo(test_eed23dd23f66ede2db601673e8d, test_313829e321635886b7fcac41be9, 'https://test.instamojo.com/api/1.1/');
+		$api = new Instamojo\Instamojo('test_eed23dd23f66ede2db601673e8d', 'test_313829e321635886b7fcac41be9', 'https://test.instamojo.com/api/1.1/');
 
 
 		try {

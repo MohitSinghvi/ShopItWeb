@@ -17,6 +17,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 				$query1 = mysqli_query($db,"SELECT * FROM `users` WHERE email='$email'");
 				if(!$row = mysqli_fetch_array($query1,MYSQLI_ASSOC)) {
 					
+					
+					$password=md5($password);
+
 					$query2 = "INSERT INTO users (username,email,password) 
 							VALUES ('$username','$email','$password')"; 
 					$data = mysqli_query ($db,$query2); 

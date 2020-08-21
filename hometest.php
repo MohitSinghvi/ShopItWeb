@@ -35,6 +35,18 @@ else{
 
 
 function showCurrentItem(){
+
+	// require 'ml-latest-small/phpandpythoncollab.php';
+	$prod_id=$_GET['prod_id'];
+	$command = escapeshellcmd('recommenderScript.py '.$prod_id);
+	// echo"HI";
+    // $result=exec("C:\xampp\htdocs\Shopitv1\ml-latest-small\recommenderScript.py /tmp");
+    // echo $output;
+
+    $output=shell_exec($command);
+	// echo $output ;
+// echo"HI";
+
 	global $show,$db,$product_query,$cart_total,$id,$log;
 
 	$product_query=mysqli_query($db,$product_query);
@@ -84,7 +96,84 @@ function showCurrentItem(){
 	   
 		
 	 }  
+	echo '<p>RECOMMENDED: </p>'; 
+	$file = fopen("recommendations.csv","r"); 
+	$start_row = 2; //define start row
+$i = 1; //define row count flag
+
+while (($row1 = fgetcsv($file)) !== FALSE) {
+    if($i > $start_row) {
+        $prod_id = $row1[1];
+
+	global $show,$db,$cart_total,$log,$id;
+  
+    $product_query = "select * from allproducts where prod_id='$prod_id'"; 
+
+	$product_query=mysqli_query($db,$product_query);
+
+	while(@$row=mysqli_fetch_assoc($product_query)){
+		$prod_id=$row['prod_id'];
+		if($log=="loggedin"){
+			// $prod_id=$row['prod_id'];
+			$is_added_to_cart="select id from usercart where id='$id' and prod_id='$prod_id'";
+			$is_added_to_cart1=mysqli_query($db,$is_added_to_cart);
+			$is_added_to_cartcount=mysqli_num_rows($is_added_to_cart1);
+		
+			if($is_added_to_cartcount!=0 and $log="loggedin"){
+				$cart_message= "✓ ADDED";
+			}
+			else{
+				$cart_message= "🛒Add to cart";
+			}
+		}
+		else{
+			$cart_message="🛒Add to cart";
+		}
+		
+		echo'<a class="card_anchor">';
+		
+		echo'<div class=card align=center style="height:450px">
+		
+			
+		
+		  <div style="overflow:hidden;height:50px"><h2>'.$row['prod_name'].'</h2></div>
+		  <div style="overflow:hidden;height:50px"
+		  <h6>'.strtoupper($row['prod_brand']).'</h6>
+		  </div>
+		  <a  href="home.php?prod_id='.$row['prod_id'].'">
+		  <div width=100% style="height:200px"><img class="prod_image" src ='.$row['prod_image'].' style="width:100%;height:100%">
+		 </div>
+		 </a>
+		  <h4>$'.number_format($row['prod_price']).'</h4>
+		  
+		 ';
+		 /* if($id==1){
+			 echo"by ".$row['id'];
+			 
+		 } */
+		 
+		if($show!="YOUR CART" and $id!=1 and !isset($_GET['order'])){
+			
+			  echo'	  
+			  <button id='.$prod_id.' type="button" onclick="addToCart('.$prod_id.')"  style="width:100%;background-color: #333;color:white;height:50px;" >'.$cart_message.'</button>
+
+
+				';
+		}
+		
 	
+		echo'    </div>';
+		
+	   
+		
+	 }  	
+
+	 } 
+
+    $i++;
+}
+
+fclose($file);
 	
 }
 
@@ -151,6 +240,19 @@ function showItems(){
 	include "pagination.php";
 
 
+
+
+
+
+$gender_checked=array("men"=>"","women"=>"");
+if(isset($_GET["gender"])){
+		
+		$mygender=$_GET["gender"];
+		$gender_checked[$mygender]=" checked"	;	
+	}
+
+
+
 	$url_query1=$_GET;
 	$url_query2=$_GET;
 	$url_male_query="";
@@ -163,19 +265,33 @@ function showItems(){
 	// }
 
 	echo'
-		<div class="leftcolumn" style="width:19%; float: left;padding: 20px;margin 10px;"><p></p>';
+		<div class="leftcolumn" style="width:19%; float: left;padding: 20px;margin 10px;position:sticky;"><p></p>';
 	
 	if($show!="YOUR CART"){
-	echo'<p>FILTER</p>
+	echo'<p><b>GENDER</b></p>
 		<p>
-			<a href='.$_SERVER["PHP_SELF"].'?'.$url_male_query.'>MEN</a>
+		<input type = "checkbox" onclick=window.location.assign('."'".$_SERVER["PHP_SELF"].'?'.$url_male_query."'".')'.$gender_checked["men"].'
+		>Men
 			
 		</p>
 		<p>
-			<a href='.$_SERVER["PHP_SELF"].'?'.$url_female_query.'>WOMEN</a>
+		<input type = "checkbox" onclick=window.location.assign('."'".$_SERVER["PHP_SELF"].'?'.$url_female_query."'".')'.$gender_checked["women"].'>Women
+			
 		</p>
 		
 	';
+
+
+
+
+
+$orderby_checked=array("asc"=>"","desc"=>"");
+if(isset($_GET["orderby"])){
+		
+		$myorderby=$_GET["orderby"];
+		$orderby_checked[$myorderby]=" checked"	;	
+	}
+
 
 
 	$url_query1=$_GET;
@@ -188,15 +304,85 @@ function showItems(){
 	$url_asc_query = http_build_query($url_query1);
 	$url_desc_query = http_build_query($url_query2);
 
-	echo'<p>SORT</p>
+	echo'<p><b>SORT </b></p>
 		<p>
-			<a href='.$_SERVER["PHP_SELF"].'?'.$url_asc_query.'>Price: low to high</a>
+			<input type = "checkbox" onclick=window.location.assign('."'".$_SERVER["PHP_SELF"].'?'.$url_asc_query."'".')'.$orderby_checked["asc"].'
+
+
+			>Price: low to high
 			
 		</p>
 		<p>
-			<a href='.$_SERVER["PHP_SELF"].'?'.$url_desc_query.'>Price: high to low</a>
+
+		<input type = "checkbox" onclick=window.location.assign('."'".$_SERVER["PHP_SELF"].'?'.$url_desc_query."'".')'.$orderby_checked["desc"].'>Price: high to low
+
+			
 		</p>
 		
+	';
+	$color_checked=array("black"=>"","white"=>"","blue"=>"","red"=>"","yellow"=>"","green"=>"");
+	if(isset($_GET["color"])){
+		
+		$mycolor=$_GET["color"];
+		$color_checked[$mycolor]=" checked"	;	
+	}
+
+
+
+
+
+
+	$url_query1=$_GET;
+	$url_query2=$_GET;
+	$url_query3=$_GET;
+	$url_query4=$_GET;
+	$url_query5=$_GET;
+	$url_query6=$_GET;
+	$url1_query="";
+	$url2_query="";
+	$url3_query="";
+	$url4_query="";
+	$url5_query="";
+	$url6_query="";
+	// if(isset($_GET['gender'])){
+	$url_query1['color']="black";
+	$url_query2['color']="white";
+	$url_query3['color']="blue";
+	$url_query4['color']="red";
+	$url_query5['color']="yellow";
+	$url_query6['color']="green";
+	$url1_query = http_build_query($url_query1);
+	$url2_query = http_build_query($url_query2);
+	$url3_query = http_build_query($url_query3);
+	$url4_query = http_build_query($url_query4);
+	$url5_query = http_build_query($url_query5);
+	$url6_query = http_build_query($url_query6);
+	
+	echo'<p><b>COLOR</b></p>
+		<p>
+
+			<input type = "checkbox" onclick=window.location.assign('."'".$_SERVER["PHP_SELF"].'?'.$url1_query."'".')'.$color_checked["black"].'>Black
+			
+		</p>
+		<p>
+			<input type = "checkbox" onclick=window.location.assign('."'".$_SERVER["PHP_SELF"].'?'.$url2_query."'".')'.$color_checked["white"].'>White
+		</p>
+		<p>
+			<input type = "checkbox" onclick=window.location.assign('."'".$_SERVER["PHP_SELF"].'?'.$url3_query."'".')'.$color_checked["blue"].'>Blue
+			
+		</p>
+		<p>
+			<input type = "checkbox" onclick=window.location.assign('."'".$_SERVER["PHP_SELF"].'?'.$url4_query."'".')'.$color_checked["red"].'>Red
+		</p>
+		<p>
+			<input type = "checkbox" onclick=window.location.assign('."'".$_SERVER["PHP_SELF"].'?'.$url5_query."'".')'.$color_checked["yellow"].'>Yellow
+			
+		</p>
+		<p>
+			<input type = "checkbox" onclick=window.location.assign('."'".$_SERVER["PHP_SELF"].'?'.$url6_query."'".')>Green
+		</p>
+		
+
 	';
 
 
@@ -242,7 +428,7 @@ function showItems(){
 		
 		  <div style="overflow:hidden;height:50px"><h2>'.$row['prod_name'].'</h2></div>
 		  <div style="overflow:hidden;height:50px"
-		  <h4>'.strtoupper($row['prod_brand']).'</h4>
+		  <h6>'.strtoupper($row['prod_brand']).'</h6>
 		  </div>
 		  <a  href="home.php?prod_id='.$row['prod_id'].'">
 		  <div width=100% style="height:200px"><img class="prod_image" src ='.$row['prod_image'].' style="width:100%;height:100%">

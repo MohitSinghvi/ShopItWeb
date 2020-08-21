@@ -1,6 +1,7 @@
 <?php
-	$output=1;
-    $command = escapeshellcmd('ml-latest-small\recommenderScript.py');
+	$output=25;
+	// echo"HIHIHIHI";
+    $command = escapeshellcmd('python recommenderScript.py '.$output);
 
     // $result=exec("C:\xampp\htdocs\Shopitv1\ml-latest-small\recommenderScript.py /tmp");
     // echo $output;

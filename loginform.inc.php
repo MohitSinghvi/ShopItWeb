@@ -4,6 +4,9 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 	$username=$_POST['username'];
 	$password=$_POST['password'];
 	if(!empty($username)&&!empty($password)){
+
+		$password=md5($password);
+		echo $password;
 		$loginform_query1="select id from users where username='$username' AND password='$password'";
 		if($loginform_result1=mysqli_query($db,$loginform_query1)){
 			$num_of_rows=mysqli_num_rows($loginform_result1);

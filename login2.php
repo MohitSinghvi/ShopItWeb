@@ -6,7 +6,7 @@ if(isset($_SESSION['userid'])&&!empty($_SESSION['userid'])){
 	if(isset($_SESSION['url'])) 
 		$url = $_SESSION['url']; // holds url for last page visited.
 	else 
-		$url = "home.php"; // default page for 
+		$url = "myhome.php"; // default page for 
 
 header("Location:$url");
 	
