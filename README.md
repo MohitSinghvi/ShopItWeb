@@ -1,6 +1,6 @@
 # ShopItWeb
 
-E-commerce Shopping Website with Semantic search
+E-commerce Shopping Website with Semantic search, Recommender System and Online payment Support.
 
 
 <h2>Home Page:</h2>
